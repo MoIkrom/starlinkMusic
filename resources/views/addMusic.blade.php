@@ -11,7 +11,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Package Name</label>
-                    <input type="text" class="form-control" name="PackageName" placeholder="Package Name">
+                    <input required type="text" class="form-control" name="PackageName" placeholder="Package Name">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Artist Image</label>
@@ -19,11 +19,11 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Artist Name</label>
-                    <input type="text" class="form-control" name="ArtistName" placeholder="Artist Name">
+                    <input required type="text" class="form-control" name="ArtistName" placeholder="Artist Name">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Date Release</label>
-                    <input type="date" class="form-control" name="ReleaseDate" placeholder="Date Release">
+                    <input required type="date" class="form-control" name="ReleaseDate" placeholder="Date Release">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Audio</label>
@@ -31,7 +31,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price </label>
-                    <input type="text" class="form-control" name="price" placeholder="Input Price">
+                    <input required type="text" class="form-control" name="price" id="inputPrice"
+                        onkeyup="formatNumber()" placeholder="Input Price">
                 </div>
             </div>
             <div class="mb-4"><button class="btn btn-primary float-end w-25 ">Save</button>

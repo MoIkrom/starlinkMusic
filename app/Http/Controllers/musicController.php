@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class musicController extends Controller
 {
@@ -47,11 +48,12 @@ class musicController extends Controller
             $audioName = null;
         }
 
+        $prices = (int) preg_replace("/[^0-9]/", "", $request->price);
         $response = Music::create(
             [
                 'PackageName' => $request->PackageName,
                 'ArtistName' => $request->ArtistName,
-                'price' => $request->price,
+                'price' => $prices,
                 'ReleaseDate' => $request->ReleaseDate,
                 'SampleURL' => $audioName,
                 'ImageURL' => $imageName,
@@ -119,7 +121,9 @@ class musicController extends Controller
 
             $data->ReleaseDate = $request->input('ReleaseDate') !== '' ? $request->input('ReleaseDate') : $previousData['ReleaseDate'];
 
-            $data->price = $request->input('price') !== '' ? $request->input('price') : $previousData['price'];
+            $pricing = (int) preg_replace("/[^0-9]/", "", $request->input('price'));
+
+            $data->price = $request->input('price') !== '' ? $pricing : $previousData['price'];
 
             $data->save();
             return redirect('/')->with(
@@ -134,6 +138,13 @@ class musicController extends Controller
     public function delete(string $id)
     {
         $data = Music::find($id);
+
+        if (File::exists(public_path('imageArtist/' . $data->ImageURL))) {
+            File::delete(public_path('imageArtist/' . $data->ImageURL));
+        }
+        if (File::exists(public_path('audioArtist/' . $data->SampleURL))) {
+            File::delete(public_path('audioArtist/' . $data->SampleURL));
+        }
         $data->delete();
         return redirect('/')->with(
             'delete', 'Success Delete Music !'

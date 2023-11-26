@@ -17,6 +17,21 @@
     @yield('addMusic')
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const formatNumber = () => {
+            var bilangan = document.getElementById('inputPrice').value;
+
+            // Hapus semua karakter non-digit (kecuali angka)
+            bilangan = bilangan.replace(/\D/g, '');
+
+            // Format angka dengan menambahkan titik setiap 3 digit
+            bilangan = bilangan.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+
+            // Tampilkan angka yang telah diformat kembali di input field
+            document.getElementById('inputPrice').value = bilangan;
+        }
+    </script>
+
 
 </body>
 

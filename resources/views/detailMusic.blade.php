@@ -11,7 +11,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Package Name</label>
-                    <input type="text" class="form-control" name="PackageName" placeholder="Package Name"
+                    <input required type="text" class="form-control" name="PackageName" placeholder="Package Name"
                         value="{{ $data->PackageName }}">
                 </div>
                 <div class="mb-3">
@@ -20,12 +20,12 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Artist Name</label>
-                    <input type="text" class="form-control" name="ArtistName" value="{{ $data->ArtistName }}"
+                    <input required type="text" class="form-control" name="ArtistName" value="{{ $data->ArtistName }}"
                         placeholder="Artist Name">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Date Release</label>
-                    <input type="date" class="form-control" name="ReleaseDate" value="{{ $data->ReleaseDate }}"
+                    <input required type="date" class="form-control" name="ReleaseDate" value="{{ $data->ReleaseDate }}"
                         placeholder="Date Release">
                 </div>
                 <div class="mb-3">
@@ -34,7 +34,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price </label>
-                    <input type="text" class="form-control" name="price" value="{{ $data->price }}"
+                    <input required type="text" class="form-control" name="price" id="inputPrice"
+                        onkeyup="formatNumber()" value="{{ number_format($data->price, 0, ',', '.') }} "
                         placeholder="Input Price">
                 </div>
             </div>
